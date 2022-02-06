@@ -17,12 +17,39 @@ namespace DisplayInvoicesDue.View
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void GetAllInvoices()
+        {
+            ListViewItems(InvoiceDAL.GetAllInvoices());
+        }
+
+        private void GetVendorInvoices(int vendorID)
+        {
+            ListViewItems(InvoiceDAL.GetVendorInvoices(vendorID));
+        }
+
+        private void VendorIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            HideErrorMessage();
+        }
+
+        private void HideErrorMessage()
+        {
+            errorMessageLabel.Text = "";
+        }
+
+        private void ShowInvalidErrorMessage(string message)
+        {
+            errorMessageLabel.Text = message;
+            errorMessageLabel.ForeColor = Color.Red;
+        }
+
+        private void ListViewItems(List<Invoice> list)
         {
             List<Invoice> invoiceList;
             try
             {
-                invoiceList = InvoiceDAL.GetInvoicesDue();
+                lvInvoices.Items.Clear();
+                invoiceList = list;
                 if (invoiceList.Count > 0)
                 {
                     Invoice invoice;
@@ -40,15 +67,32 @@ namespace DisplayInvoicesDue.View
                 }
                 else
                 {
-                    MessageBox.Show("All invoices are paid in full.",
-                        "No Balance Due");
-                    this.Close();
+                    ShowInvalidErrorMessage("No Invoices");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-                this.Close();
+                ShowInvalidErrorMessage("");
+            }
+        }
+
+        private void GetAllInvoicesButton_Click(object sender, EventArgs e)
+        {
+            vendorIDTextBox.Text = "";
+            ShowInvalidErrorMessage("");
+            GetAllInvoices();
+        }
+
+        private void GetVendorInvoicesButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var vendorID = int.Parse(vendorIDTextBox.Text);
+                GetVendorInvoices(vendorID);
+            }
+            catch (Exception)
+            {
+                ShowInvalidErrorMessage("VendorID must be a number");
             }
         }
     }

@@ -8,16 +8,32 @@ namespace DisplayInvoicesDue.DAL
 {
     public class InvoiceDAL
     {
-        public static List<Invoice> GetInvoicesDue()
+        public static List<Invoice> GetAllInvoices()
         {
-            List<Invoice> invoiceList = new List<Invoice>();
-            SqlConnection connection = PayablesDBConnection.GetConnection();
             string selectStatement =
                 "SELECT InvoiceNumber, InvoiceDate, InvoiceTotal, " +
                 "PaymentTotal, CreditTotal, DueDate " +
                 "FROM Invoices " +
-                "WHERE InvoiceTotal - PaymentTotal - CreditTotal > 0 " +
-                "ORDER BY DueDate";
+                "ORDER BY InvoiceNumber";
+            return ProcessList(selectStatement);
+        }
+
+        public static List<Invoice> GetVendorInvoices(int vendorID)
+        {
+            string selectStatement =
+                "SELECT InvoiceNumber, InvoiceDate, InvoiceTotal, " +
+                "PaymentTotal, CreditTotal, DueDate " +
+                "FROM Invoices " +
+                "WHERE VendorID = " + vendorID + " " +
+                "ORDER BY InvoiceNumber";
+            return ProcessList(selectStatement);
+        }
+
+        public static List<Invoice> ProcessList(string sql)
+        {
+            List<Invoice> invoiceList = new List<Invoice>();
+            SqlConnection connection = PayablesDBConnection.GetConnection();
+            string selectStatement = sql;
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             try
             {
@@ -38,9 +54,9 @@ namespace DisplayInvoicesDue.DAL
                 }
                 reader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw ex;
+                throw;
             }
             finally
             {

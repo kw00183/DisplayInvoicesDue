@@ -111,6 +111,7 @@
             this.getAllInvoicesButton.TabIndex = 1;
             this.getAllInvoicesButton.Text = "Get All Invoices";
             this.getAllInvoicesButton.UseVisualStyleBackColor = true;
+            this.getAllInvoicesButton.Click += new System.EventHandler(this.GetAllInvoicesButton_Click);
             // 
             // getVendorInvoicesButton
             // 
@@ -122,6 +123,7 @@
             this.getVendorInvoicesButton.TabIndex = 2;
             this.getVendorInvoicesButton.Text = "Get Vendor Invoices";
             this.getVendorInvoicesButton.UseVisualStyleBackColor = true;
+            this.getVendorInvoicesButton.Click += new System.EventHandler(this.GetVendorInvoicesButton_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -136,8 +138,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(385, 68);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(385, 62);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // vendorIDLabel
@@ -159,6 +161,7 @@
             this.vendorIDTextBox.Name = "vendorIDTextBox";
             this.vendorIDTextBox.Size = new System.Drawing.Size(265, 23);
             this.vendorIDTextBox.TabIndex = 1;
+            this.vendorIDTextBox.TextChanged += new System.EventHandler(this.VendorIDTextBox_TextChanged);
             // 
             // errorMessageLabel
             // 
@@ -167,7 +170,7 @@
             this.errorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorMessageLabel.Location = new System.Drawing.Point(239, 28);
             this.errorMessageLabel.Name = "errorMessageLabel";
-            this.errorMessageLabel.Size = new System.Drawing.Size(20, 40);
+            this.errorMessageLabel.Size = new System.Drawing.Size(20, 34);
             this.errorMessageLabel.TabIndex = 2;
             this.errorMessageLabel.Text = "   ";
             // 
@@ -184,7 +187,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invoices by Due Date";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
