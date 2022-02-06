@@ -8,7 +8,7 @@ namespace DisplayInvoicesDue.DAL
 {
     public class InvoiceDAL
     {
-        public static List<Invoice> GetAllInvoices()
+        public List<Invoice> GetAllInvoices()
         {
             string selectStatement =
                 "SELECT InvoiceNumber, InvoiceDate, InvoiceTotal, " +
@@ -18,7 +18,7 @@ namespace DisplayInvoicesDue.DAL
             return ProcessList(selectStatement);
         }
 
-        public static List<Invoice> GetVendorInvoices(int vendorID)
+        public List<Invoice> GetVendorInvoices(int vendorID)
         {
             string selectStatement =
                 "SELECT InvoiceNumber, InvoiceDate, InvoiceTotal, " +
@@ -29,7 +29,7 @@ namespace DisplayInvoicesDue.DAL
             return ProcessList(selectStatement);
         }
 
-        public static List<Invoice> ProcessList(string sql)
+        private static List<Invoice> ProcessList(string sql)
         {
             List<Invoice> invoiceList = new List<Invoice>();
             SqlConnection connection = PayablesDBConnection.GetConnection();

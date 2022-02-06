@@ -1,30 +1,29 @@
-﻿using DisplayInvoicesDue.DAL;
+﻿using DisplayInvoicesDue.Controller;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DisplayInvoicesDue.View
 {
     public partial class Form1 : Form
     {
+        private readonly InvoiceController invoiceController;
+
         public Form1()
         {
             InitializeComponent();
+            invoiceController = new InvoiceController();
         }
 
         private void GetAllInvoices()
         {
-            ListViewItems(InvoiceDAL.GetAllInvoices());
+            ListViewItems(invoiceController.GetAllInvoices());
         }
 
         private void GetVendorInvoices(int vendorID)
         {
-            ListViewItems(InvoiceDAL.GetVendorInvoices(vendorID));
+            ListViewItems(invoiceController.GetVendorInvoices(vendorID));
         }
 
         private void VendorIDTextBox_TextChanged(object sender, EventArgs e)
@@ -70,7 +69,7 @@ namespace DisplayInvoicesDue.View
                     ShowInvalidErrorMessage("No Invoices");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ShowInvalidErrorMessage("");
             }

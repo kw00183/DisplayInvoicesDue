@@ -11,23 +11,33 @@ namespace DisplayInvoicesDue.Controller
 
     public class InvoiceController
     {
+        private readonly InvoiceDAL invoiceSource;
+
         /// <summary>
         /// InvoiceController constructor.
-        /// 
         /// </summary>
         public InvoiceController()
         {
-            new InvoiceDAL();
+            this.invoiceSource = new InvoiceDAL();
 
         }
+        
         /// <summary>
-        /// Get a list of invoces that are due.
+        /// Get a list of all invoices
         /// </summary>
-        /// <returns></returns>
-        public List<Invoice> GetInvoicesDue()
+        /// <returns>all invoices</returns>
+        public List<Invoice> GetAllInvoices()
         {
-            return GetInvoicesDue();
+            return this.invoiceSource.GetAllInvoices();
         }
 
+        /// <summary>
+        /// Get a list of vendor invoices
+        /// </summary>
+        /// <returns>vendor invoices</returns>
+        public List<Invoice> GetVendorInvoices(int vendorID)
+        {
+            return this.invoiceSource.GetVendorInvoices(vendorID);
+        }
     }
 }
