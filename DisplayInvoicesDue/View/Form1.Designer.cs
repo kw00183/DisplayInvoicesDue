@@ -1,4 +1,4 @@
-﻿namespace DisplayInvoicesDue
+﻿namespace DisplayInvoicesDue.View
 {
     partial class Form1
     {

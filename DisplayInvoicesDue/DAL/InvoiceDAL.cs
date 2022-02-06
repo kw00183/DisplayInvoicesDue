@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 
-namespace PayablesData
+namespace DisplayInvoicesDue.DAL
 {
-    public static class InvoiceDB
+    public class InvoiceDAL
     {
         public static List<Invoice> GetInvoicesDue()
         {
             List<Invoice> invoiceList = new List<Invoice>();
-            SqlConnection connection = PayablesDB.GetConnection();
+            SqlConnection connection = PayablesDBConnection.GetConnection();
             string selectStatement =
                 "SELECT InvoiceNumber, InvoiceDate, InvoiceTotal, " +
                 "PaymentTotal, CreditTotal, DueDate " +
@@ -25,13 +25,15 @@ namespace PayablesData
                 SqlDataReader reader = selectCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    Invoice invoice = new Invoice();
-                    invoice.InvoiceNumber = reader["InvoiceNumber"].ToString();
-                    invoice.InvoiceDate = (DateTime)reader["InvoiceDate"];
-                    invoice.InvoiceTotal = (decimal)reader["InvoiceTotal"];
-                    invoice.PaymentTotal = (decimal)reader["PaymentTotal"];
-                    invoice.CreditTotal = (decimal)reader["CreditTotal"];
-                    invoice.DueDate = (DateTime)reader["DueDate"];
+                    Invoice invoice = new Invoice
+                    {
+                        InvoiceNumber = reader["InvoiceNumber"].ToString(),
+                        InvoiceDate = (DateTime)reader["InvoiceDate"],
+                        InvoiceTotal = (decimal)reader["InvoiceTotal"],
+                        PaymentTotal = (decimal)reader["PaymentTotal"],
+                        CreditTotal = (decimal)reader["CreditTotal"],
+                        DueDate = (DateTime)reader["DueDate"]
+                    };
                     invoiceList.Add(invoice);
                 }
                 reader.Close();
