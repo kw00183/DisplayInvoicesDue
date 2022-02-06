@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
 
 namespace DisplayInvoicesDue.DAL
 {
+    /// <summary>
+    /// class for the data layer
+    /// </summary>
     public class InvoiceDAL
     {
+        #region Methods
+
+        /// <summary>
+        /// method used to control the sql query and return all invoices
+        /// </summary>
+        /// <returns>list of all invoices</returns>
         public List<Invoice> GetAllInvoices()
         {
             string selectStatement =
@@ -18,6 +25,10 @@ namespace DisplayInvoicesDue.DAL
             return ProcessList(selectStatement);
         }
 
+        /// <summary>
+        /// method used to control the sql query and return vendor invoices
+        /// </summary>
+        /// <returns>list of vendor invoices</returns>
         public List<Invoice> GetVendorInvoices(int vendorID)
         {
             string selectStatement =
@@ -64,5 +75,7 @@ namespace DisplayInvoicesDue.DAL
             }
             return invoiceList;
         }
+
+        #endregion
     }
 }

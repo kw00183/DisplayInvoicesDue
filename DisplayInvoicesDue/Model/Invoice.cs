@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DisplayInvoicesDue
 {
+    /// <summary>
+    /// class to create Invoice object
+    /// </summary>
     public class Invoice
     {
+        #region Data Members
+
         private string invoiceNumber;
         private DateTime invoiceDate;
         private decimal invoiceTotal;
@@ -14,10 +17,24 @@ namespace DisplayInvoicesDue
         private decimal creditTotal;
         private DateTime dueDate;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// constructor for Invoice object
+        /// </summary>
         public Invoice()
         {
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// getter and setter for Invoice Number
+        /// </summary>
         public string InvoiceNumber
         {
             get
@@ -30,6 +47,9 @@ namespace DisplayInvoicesDue
             }
         }
 
+        /// <summary>
+        /// getter and setter for Invoice Date
+        /// </summary>
         public DateTime InvoiceDate
         {
             get
@@ -42,6 +62,9 @@ namespace DisplayInvoicesDue
             }
         }
 
+        /// <summary>
+        /// getter and setter for Invoice Total
+        /// </summary>
         public decimal InvoiceTotal
         {
             get
@@ -54,6 +77,9 @@ namespace DisplayInvoicesDue
             }
         }
 
+        /// <summary>
+        /// getter and setter for Payment Total
+        /// </summary>
         public decimal PaymentTotal
         {
             get
@@ -66,6 +92,9 @@ namespace DisplayInvoicesDue
             }
         }
 
+        /// <summary>
+        /// getter and setter for Credit Total
+        /// </summary>
         public decimal CreditTotal
         {
             get
@@ -78,6 +107,9 @@ namespace DisplayInvoicesDue
             }
         }
 
+        /// <summary>
+        /// getter and setter for Due Date
+        /// </summary>
         public DateTime DueDate
         {
             get
@@ -90,9 +122,14 @@ namespace DisplayInvoicesDue
             }
         }
 
+        /// <summary>
+        /// method to return Balance Due on Invoice
+        /// </summary>
         public decimal BalanceDue()
         {
             return invoiceTotal - paymentTotal - creditTotal;
         }
+
+        #endregion
     }
 }

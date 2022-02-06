@@ -1,27 +1,34 @@
 ﻿
 using System.Collections.Generic;
-
 using DisplayInvoicesDue.DAL;
 
 namespace DisplayInvoicesDue.Controller
 {
     /// <summary>
-    /// The controller class deals with the DAL and delegates the work to DAL
+    /// class deals with the DAL and delegates the work to DAL
     /// </summary>
-
     public class InvoiceController
     {
+        #region Data Members
         private readonly InvoiceDAL invoiceSource;
 
+        #endregion
+
+        #region Controllers
+
         /// <summary>
-        /// InvoiceController constructor.
+        /// constructor for the controller
         /// </summary>
         public InvoiceController()
         {
             this.invoiceSource = new InvoiceDAL();
 
         }
-        
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Get a list of all invoices
         /// </summary>
@@ -39,5 +46,7 @@ namespace DisplayInvoicesDue.Controller
         {
             return this.invoiceSource.GetVendorInvoices(vendorID);
         }
+
+        #endregion
     }
 }

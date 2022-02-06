@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
 
 namespace DisplayInvoicesDue.DAL
 {
+    /// <summary>
+    /// class for DB connection to Payables
+    /// </summary>
     public static class PayablesDBConnection
     {
+        #region Methods
+
+        /// <summary>
+        /// method used to connect to the database
+        /// </summary>
+        /// <returns>connection to database</returns>
         public static SqlConnection GetConnection()
         {
             string connectionString =
@@ -16,5 +23,7 @@ namespace DisplayInvoicesDue.DAL
             SqlConnection connection = new SqlConnection(connectionString);
             return connection;
         }
+
+        #endregion
     }
 }

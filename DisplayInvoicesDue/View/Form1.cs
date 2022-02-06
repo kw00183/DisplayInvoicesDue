@@ -6,15 +6,31 @@ using System.Windows.Forms;
 
 namespace DisplayInvoicesDue.View
 {
+    /// <summary>
+    /// class to control form1 object
+    /// </summary>
     public partial class Form1 : Form
     {
+        #region Data Members
+
         private readonly InvoiceController invoiceController;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// constructor the generates form1 object
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
             invoiceController = new InvoiceController();
         }
+
+        #endregion
+
+        #region Methods
 
         private void GetAllInvoices()
         {
@@ -94,5 +110,7 @@ namespace DisplayInvoicesDue.View
                 ShowInvalidErrorMessage("VendorID must be a number");
             }
         }
+
+        #endregion
     }
 }
